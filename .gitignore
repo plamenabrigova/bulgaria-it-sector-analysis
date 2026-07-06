@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.idea/
+
+
+# Data - raw files are large and not code
+data/raw/
+data/clean/
+
+# IDE
+.idea/
+.vscode/
+.pycharm/
+
