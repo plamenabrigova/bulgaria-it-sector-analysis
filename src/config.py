@@ -18,11 +18,24 @@ FILES = {
 # cloud_adoption is excluded because it has a 6-part key and requires its own cleaning function
 SIMPLE_FILES = {k: v for k, v in FILES.items() if k != 'cloud_adoption'}
 
-# EU27 country codes as used by Eurostat
-# Note: Eurostat uses EL for Greece instead of the ISO standard GR
+GEO_CODE_FIXES = {
+    "EL": "GR",  # Eurostat uses EL for Greece; standardize to ISO GR
+}
+
+# EU27 country codes
 EU27 = ['AT', 'BE', 'BG', 'CY', 'CZ', 'DE', 'DK', 'EE', 'ES', 'FI',
-        'FR', 'EL', 'HR', 'HU', 'IE', 'IT', 'LT', 'LU', 'LV', 'MT',
+        'FR', 'GR', 'HR', 'HU', 'IE', 'IT', 'LT', 'LU', 'LV', 'MT',
         'NL', 'PL', 'PT', 'RO', 'SE', 'SI', 'SK']
+
+COUNTRY_NAMES = {
+    "AT": "Austria", "BE": "Belgium", "BG": "Bulgaria", "CZ": "Czech Republic",
+    "DE": "Germany", "DK": "Denmark", "EE": "Estonia", "GR": "Greece",
+    "ES": "Spain", "FI": "Finland", "FR": "France", "HR": "Croatia",
+    "HU": "Hungary", "IE": "Ireland", "IT": "Italy", "LT": "Lithuania",
+    "LV": "Latvia", "MT": "Malta", "NL": "Netherlands", "PL": "Poland",
+    "PT": "Portugal", "RO": "Romania", "SE": "Sweden", "SI": "Slovenia",
+    "SK": "Slovakia",
+}
 
 # NACE Rev.2 activity filter applied to the three simple datasets
 # C_ICT: ICT occupations across all economic sectors (persons employed in ICT roles

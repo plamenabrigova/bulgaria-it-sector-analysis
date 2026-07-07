@@ -1,5 +1,5 @@
 import pandas as pd
-from src.config import RAW_FOLDER, EU27, NACE_FILTER, CLOUD_SIZE_EMP, CLOUD_INDIC_IS
+from src.config import RAW_FOLDER, EU27, NACE_FILTER, CLOUD_SIZE_EMP, CLOUD_INDIC_IS, GEO_CODE_FIXES, COUNTRY_NAMES
 
 
 def _melt_and_clean(geo, df):
@@ -9,6 +9,14 @@ def _melt_and_clean(geo, df):
     df_long = df_long.melt(id_vars=['geo'],
                            var_name='year',
                            value_name='raw_value')
+
+    df["geo"] = df["geo"].replace(GEO_CODE_FIXES)
+    df["country"] = df["geo"].map(COUNTRY_NAMES)
+
+    # Catch anything that didn't map
+    unmapped = df[df["country"].isnull()]["geo"].unique()
+    if len(unmapped) > 0:
+        raise ValueError(f"Unmapped geo codes found: {unmapped}")
 
     df_long['value'] = (df_long['raw_value']
                         .str.strip()
