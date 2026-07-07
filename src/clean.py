@@ -3,18 +3,20 @@ from src.config import RAW_FOLDER, EU27, NACE_FILTER, CLOUD_SIZE_EMP, CLOUD_INDI
 
 
 def _melt_and_clean(geo, df):
-    # Shared melt and flag-stripping logic for all datasets.
     year_cols = df.columns[1:]
     df_long = pd.concat([geo, df[year_cols]], axis=1)
     df_long = df_long.melt(id_vars=['geo'],
                            var_name='year',
                            value_name='raw_value')
 
-    df["geo"] = df["geo"].replace(GEO_CODE_FIXES)
-    df["country"] = df["geo"].map(COUNTRY_NAMES)
+    # Standardize geo codes and filter to EU27
+    df_long['geo'] = df_long['geo'].replace(GEO_CODE_FIXES)
+    df_long = df_long[df_long['geo'].isin(EU27)].reset_index(drop=True)
 
-    # Catch anything that didn't map
-    unmapped = df[df["country"].isnull()]["geo"].unique()
+    # Attach country names
+    df_long['country'] = df_long['geo'].map(COUNTRY_NAMES)
+
+    unmapped = df_long[df_long['country'].isnull()]['geo'].unique()
     if len(unmapped) > 0:
         raise ValueError(f"Unmapped geo codes found: {unmapped}")
 
@@ -26,7 +28,7 @@ def _melt_and_clean(geo, df):
     df_long['year'] = df_long['year'].str.strip().astype(int)
 
     df_clean = df_long.dropna(subset=['value'])
-    return df_clean[df_clean['geo'].isin(EU27)].reset_index(drop=True)
+    return df_clean.reset_index(drop=True)
 
 
 def clean_stats(filepath):

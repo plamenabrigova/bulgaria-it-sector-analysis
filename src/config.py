@@ -28,13 +28,13 @@ EU27 = ['AT', 'BE', 'BG', 'CY', 'CZ', 'DE', 'DK', 'EE', 'ES', 'FI',
         'NL', 'PL', 'PT', 'RO', 'SE', 'SI', 'SK']
 
 COUNTRY_NAMES = {
-    "AT": "Austria", "BE": "Belgium", "BG": "Bulgaria", "CZ": "Czech Republic",
-    "DE": "Germany", "DK": "Denmark", "EE": "Estonia", "GR": "Greece",
-    "ES": "Spain", "FI": "Finland", "FR": "France", "HR": "Croatia",
-    "HU": "Hungary", "IE": "Ireland", "IT": "Italy", "LT": "Lithuania",
-    "LV": "Latvia", "MT": "Malta", "NL": "Netherlands", "PL": "Poland",
-    "PT": "Portugal", "RO": "Romania", "SE": "Sweden", "SI": "Slovenia",
-    "SK": "Slovakia",
+    "AT": "Austria", "BE": "Belgium", "BG": "Bulgaria", "CY": "Cyprus",
+    "CZ": "Czech Republic", "DE": "Germany", "DK": "Denmark", "EE": "Estonia",
+    "GR": "Greece", "ES": "Spain", "FI": "Finland", "FR": "France",
+    "HR": "Croatia", "HU": "Hungary", "IE": "Ireland", "IT": "Italy",
+    "LT": "Lithuania", "LU": "Luxembourg", "LV": "Latvia", "MT": "Malta",
+    "NL": "Netherlands", "PL": "Poland", "PT": "Portugal", "RO": "Romania",
+    "SE": "Sweden", "SI": "Slovenia", "SK": "Slovakia",
 }
 
 # NACE Rev.2 activity filter applied to the three simple datasets
